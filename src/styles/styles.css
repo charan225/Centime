@@ -1,0 +1,36 @@
+.float-right {
+    float: right;
+}
+
+html[dir=rtl] .float-right {
+    float: left;
+}
+
+.float-left {
+    float: left;
+}
+
+html[dir=rtl] .float-left {
+    float: right;
+}
+
+.display-flex{
+    display: flex;
+}
+
+.main-page-content-container{
+    max-height: calc(100vh - 64px);
+    overflow: auto;
+}
+
+.p-24 {
+    padding:24px;
+}
+
+.m-r12 {
+    margin-right: 12px;
+}
+
+html[dir=rtl] .m-r12{
+    margin-left: 12px;
+}

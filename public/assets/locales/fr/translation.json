@@ -1,0 +1,14 @@
+{
+  "AddNewRow_ButtonText": "Ajouter une nouvelle ligne",
+  "Sankey_Diagram": "Diagramme de Sankey",
+  "Table_Header_Title": "Données de flux entrant-sortant",
+  "Inflow_Text": "Afflux",
+  "Outflow_Text": "Sortie",
+  "Value_Text": "Valeur",
+  "Modal_header_Title": "Nouvelle ligne",
+  "Close_ButtonText": "Fermer",
+  "Save_Changes": "Sauvegarder les modifications",
+  "Inflow": "Afflux",
+  "Outflow": "Sortie",
+  "Value": "Valeur"
+}

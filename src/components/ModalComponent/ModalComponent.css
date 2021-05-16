@@ -1,0 +1,18 @@
+.display-block{
+    display: block !important;
+}
+
+.modal-backdrop {
+    background-color: #fff!important;
+    opacity: .6!important;
+    z-index: auto;
+}
+
+.form-group .required:after {
+    content:"*";
+    color:red;
+  }
+
+.new-flow-form-container label{
+ float: left;
+}
