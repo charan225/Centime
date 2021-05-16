@@ -1,17 +1,10 @@
 import React from "react";
-import { useTranslation } from 'react-i18next';
 
 import DisplaySankeyDiagram from "../DisplaySankeyDiagram/DisplaySankeyDiagram";
 import HeaderComponent from "../HeaderComponent/HeaderComponent";
 import TableComponent from "../TableComponent/TableComponent";
 
-import "../../styles/styles.css"
-
-const createData = (item) => ({
-    inflow: item.inflow,
-    outflow: item.outflow,
-    value: item.value,
-  });
+import "../../styles/styles.css";
 
 const MainPageContainer = () => {
   return (

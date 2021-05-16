@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
 import {useSelector, useDispatch} from "react-redux";
 import { useTranslation } from 'react-i18next';
+
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -24,52 +24,52 @@ import {modalActions} from '../../store/index';
 import "./TableComponent.css"
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%",
-    marginTop: theme.spacing(3),
-    overflowX: "auto"
-  },
-  table: {
-    minWidth: 650
-  },
-  selectTableCell: {
-    width: 60
-  },
-  tableCell: {
-    width: 130,
-    height: 40
-  },
-  input: {
-    width: 130,
-    height: 40
-  }
+    root: {
+        width: "100%",
+        marginTop: theme.spacing(3),
+        overflowX: "auto"
+    },
+    table: {
+        minWidth: 650
+    },
+    selectTableCell: {
+        width: 60
+    },
+    tableCell: {
+        width: 130,
+        height: 40
+    },
+    input: {
+        width: 130,
+        height: 40
+    }
 }));
 
 const createData = (index, inflow, outflow, value) => ({
-  id: index,
-  inflow,
-  outflow,
-  value,
-  isEditMode: false
+    id: index,
+    inflow,
+    outflow,
+    value,
+    isEditMode: false
 });
 
 const CustomTableCell = ({ row, name, onChange }) => {
-  const classes = useStyles();
-  const { isEditMode } = row;
-  return (
-    <TableCell align="left" className={classes.tableCell}>
-      {isEditMode ? (
-        <Input
-          value={row[name]}
-          name={name}
-          onChange={e => onChange(e, row)}
-          className={classes.input}
-        />
-      ) : (
-        row[name]
-      )}
-    </TableCell>
-  );
+    const classes = useStyles();
+    const { isEditMode } = row;
+    return (
+        <TableCell align="left" className={classes.tableCell}>
+            {isEditMode ? (
+                <Input
+                    value={row[name]}
+                    name={name}
+                    onChange={e => onChange(e, row)}
+                    className={classes.input}
+                />
+            ) : (
+                row[name]
+            )}
+        </TableCell>
+    );
 };
 
 const TableComponent = (props) => {
@@ -149,74 +149,74 @@ const TableComponent = (props) => {
         dispatch(modalActions.displayModal());
     }
 
-  return (
-      <div className="container">
-          <div className="table-container">
-              <div className="">
-                  <h2>{t('Table_Header_Title')}</h2>
-              </div>
-              <div className="add-new-button">
-                  <button type="button" class="btn btn-primary float-left" onClick={openModal}>{t('AddNewRow_ButtonText')}</button>
-              </div>
-              <Paper className={classes.root}>
-                  <Table className={classes.table} aria-label="caption table">
-                      <TableHead>
-                          <TableRow>
-                              <TableCell align="left" />
-                              <TableCell align="left" />
-                              {Headers.map(header => (
-                                  <TableCell align="left">{t(header)}</TableCell>
-                              ))}
-                          </TableRow>
-                      </TableHead>
-                      <TableBody>
-                          {tableRows.map(row => (
-                              <TableRow key={row.id}>
-                                  <TableCell className={classes.selectTableCell}>
-                                      {row.isEditMode ? (
-                                          <>
-                                              <IconButton
-                                                  aria-label="done"
-                                                  onClick={() => onToggleEditMode(row.id)}
-                                              >
-                                                  <DoneIcon />
-                                              </IconButton>
-                                              <IconButton
-                                                  aria-label="revert"
-                                                  onClick={() => onRevert(row.id)}
-                                              >
-                                                  <RevertIcon />
-                                              </IconButton>
-                                          </>
-                                      ) : (
-                                          <IconButton
-                                              aria-label="edit"
-                                              onClick={() => onToggleEditMode(row.id)}
-                                          >
-                                              <EditIcon />
-                                          </IconButton>
-                                      )}
-                                  </TableCell>
-                                  <TableCell className={classes.selectTableCell}>
-                                      <IconButton
-                                          aria-label="delete"
-                                          onClick={() => onDelete(row.id)}
-                                      >
-                                          <DeleteOutlineIcon />
-                                      </IconButton>
-                                  </TableCell>
-                                  <CustomTableCell {...{ row, name: "inflow", onChange }} />
-                                  <CustomTableCell {...{ row, name: "outflow", onChange }} />
-                                  <CustomTableCell {...{ row, name: "value", onChange }} />
-                              </TableRow>
-                          ))}
-                      </TableBody>
-                  </Table>
-              </Paper>
-              {isModalOpen && <ModalComponent />}
-          </div>
-      </div>
-  );
+    return (
+        <div className="container">
+            <div className="table-container">
+                <div className="">
+                    <h2>{t('Table_Header_Title')}</h2>
+                </div>
+                <div className="add-new-button">
+                    <button type="button" className="btn btn-primary float-left" onClick={openModal}>{t('AddNewRow_ButtonText')}</button>
+                </div>
+                <Paper className={classes.root}>
+                    <Table className={classes.table} aria-label="caption table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="left" />
+                                <TableCell align="left" />
+                                {Headers.map(header => (
+                                    <TableCell align="left">{t(header)}</TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {tableRows.map(row => (
+                                <TableRow key={row.id}>
+                                    <TableCell className={classes.selectTableCell}>
+                                        {row.isEditMode ? (
+                                            <>
+                                                <IconButton
+                                                    aria-label="done"
+                                                    onClick={() => onToggleEditMode(row.id)}
+                                                >
+                                                    <DoneIcon />
+                                                </IconButton>
+                                                <IconButton
+                                                    aria-label="revert"
+                                                    onClick={() => onRevert(row.id)}
+                                                >
+                                                    <RevertIcon />
+                                                </IconButton>
+                                            </>
+                                        ) : (
+                                            <IconButton
+                                                aria-label="edit"
+                                                onClick={() => onToggleEditMode(row.id)}
+                                            >
+                                                <EditIcon />
+                                            </IconButton>
+                                        )}
+                                    </TableCell>
+                                    <TableCell className={classes.selectTableCell}>
+                                        <IconButton
+                                            aria-label="delete"
+                                            onClick={() => onDelete(row.id)}
+                                        >
+                                            <DeleteOutlineIcon />
+                                        </IconButton>
+                                    </TableCell>
+                                    <CustomTableCell {...{ row, name: "inflow", onChange }} />
+                                    <CustomTableCell {...{ row, name: "outflow", onChange }} />
+                                    <CustomTableCell {...{ row, name: "value", onChange }} />
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </Paper>
+                {isModalOpen && <ModalComponent />}
+            </div>
+        </div>
+    );
 }
 
 export default TableComponent;

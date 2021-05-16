@@ -2,8 +2,8 @@
     float: right;
 }
 
-html[dir=rtl] .float-right {
-    float: left;
+html[dir="rtl"] .float-right {
+    float: left !important;
 }
 
 .float-left {
@@ -11,7 +11,7 @@ html[dir=rtl] .float-right {
 }
 
 html[dir=rtl] .float-left {
-    float: right;
+    float: right !important;
 }
 
 .display-flex{
@@ -31,6 +31,6 @@ html[dir=rtl] .float-left {
     margin-right: 12px;
 }
 
-html[dir=rtl] .m-r12{
-    margin-left: 12px;
+html[dir="rtl"] .m-r12{
+    margin-left: 12px !important;
 }

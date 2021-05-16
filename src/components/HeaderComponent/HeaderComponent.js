@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import {DropdownButton, Dropdown} from 'react-bootstrap';
+
 import LanguageIcon from '@material-ui/icons/Language';
 import IconButton from "@material-ui/core/IconButton";
 
 import logo from '../../assets/centimeLogo.png';
-import {DropdownButton, Dropdown} from 'react-bootstrap';
 import i18next from 'i18next';
 import Cookies from 'js-cookie';
-import { useDispatch } from 'react-redux';
 import './HeaderComponent.css';
 
 const languages = [
@@ -33,21 +32,19 @@ const languages = [
 const HeaderComponent = () => {   
     const [currentLanguageCode,setcurrentLanguageCode] = React.useState(Cookies.get('i18next') || 'en');
     const [currentLanguage, setcurrentLanguage] = React.useState(languages.find(l => l.code === currentLanguageCode));
-    console.log(currentLanguageCode,currentLanguage, Cookies.get('i18Next'));
     
     useEffect(()=> {
         document.body.dir = currentLanguage.dir || "ltr";
-        console.log("dir",document.body.dir);
     },[currentLanguageCode])
 
     const onChangeLang = (code)=>{
         i18next.changeLanguage(code);
         const newcurrentLanguageCode = Cookies.get('i18next') || 'en';
         const newCurrentLanguage = languages.find(l => l.code === newcurrentLanguageCode);
-        console.log("onclick2",newCurrentLanguage);
         setcurrentLanguage(newCurrentLanguage);
         setcurrentLanguageCode(newcurrentLanguageCode);
     }
+
     const dropdownTitle = () => {
         return (
             <IconButton
@@ -57,6 +54,7 @@ const HeaderComponent = () => {
             </IconButton>
         )
     }
+
     return (
         <div className="header-container">
             <div className="display-flex header-content">

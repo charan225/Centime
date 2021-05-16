@@ -1,14 +1,13 @@
-import { createStore } from 'redux';
 import {createSlice, configureStore} from '@reduxjs/toolkit';
 
 const mainData = [
-    { inflow: "Salary", outflow: "Bills and Finance", value: 15 },
-    { inflow: "Rental", outflow: "Savings", value: 8 },  
-    { inflow: "Income from shares", outflow: "Investments", value: 6 },
-    { inflow: "Bills and Finance", outflow: "Electricity Bill", value: 5 },
-    { inflow: "Bills and Finance", outflow: "Mobile Bill", value: 3 },
-    { inflow: "Investments", outflow: "Shares", value: 6 },    
-    { inflow: "Bills and Finance", outflow: "Home loan", value: 5 },
+    { inflow: "Salary", outflow: "Bills and Finance", value: 1300 },
+    { inflow: "Rental", outflow: "Savings", value: 800 },  
+    { inflow: "Income from shares", outflow: "Investments", value: 600 },
+    { inflow: "Bills and Finance", outflow: "Electricity Bill", value: 500 },
+    { inflow: "Bills and Finance", outflow: "Mobile Bill", value: 300 },
+    { inflow: "Investments", outflow: "Shares", value: 600 },    
+    { inflow: "Bills and Finance", outflow: "Home loan", value: 500 },
   ];
 
 const headers = ["Inflow","Outflow","Value"];
