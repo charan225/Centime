@@ -63,12 +63,12 @@ describe("Table component", () => {
     });
   });
 
-  test("should render table component correctly", () => {
-    const wrapper = mount(
-      <Provider store={store}>
-        <TableComponent />
-      </Provider>
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
+  // test("should render table component correctly", () => {
+  //   const wrapper = mount(
+  //     <Provider store={store}>
+  //       <TableComponent />
+  //     </Provider>
+  //   );
+  //   expect(wrapper).toMatchSnapshot();
+  // });
 });
