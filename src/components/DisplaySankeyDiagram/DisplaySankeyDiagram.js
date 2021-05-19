@@ -1,18 +1,17 @@
-import React from 'react';
-import {useSelector} from "react-redux";
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import "./DisplaySankeyDiagram.css";
 
-const DisplaySankeyDiagram = (props) => {
+const DisplaySankeyDiagram = () => {
   const { t } = useTranslation();
 
   const rows = useSelector((state) => state.rows.rows);
-  React.useEffect(() => {  
-
+  React.useEffect(() => {
     am4core.useTheme(am4themes_animated);
     // Themes end
     var chart = am4core.create("chartdiv", am4charts.SankeyDiagram);
@@ -43,7 +42,6 @@ const DisplaySankeyDiagram = (props) => {
     nodeTemplate.showSystemTooltip = true;
     nodeTemplate.cursorOverStyle = am4core.MouseCursorStyle.pointer;
 
-
     return () => {
       chart.dispose();
     };
@@ -51,10 +49,10 @@ const DisplaySankeyDiagram = (props) => {
 
   return (
     <div className="container sankey-diagram-container">
-      <h2> {t('Sankey_Diagram')}</h2>
+      <h2> {t("Sankey_Diagram")}</h2>
       <div id="chartdiv" className="chart-display-container"></div>
     </div>
-  )
-}
+  );
+};
 
 export default DisplaySankeyDiagram;

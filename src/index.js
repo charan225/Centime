@@ -1,33 +1,30 @@
-import React, {Suspense} from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-import './index.css';
-import './i18n.js'
-import App from './App';
-import store from './store/index';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'flag-icon-css/css/flag-icon.min.css';
-
+import "./index.css";
+import "./i18n.js";
+import App from "./App";
+import store from "./store/index";
+import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.css";
+import "flag-icon-css/css/flag-icon.min.css";
 
 const loadingMarkup = (
   <div>
-    <h2>
-      Loading...
-    </h2>
+    <h2>Loading...</h2>
   </div>
-)
+);
 
 ReactDOM.render(
   <Suspense fallback={loadingMarkup}>
-    <Provider store={store}>
-      <React.StrictMode>
+    <React.StrictMode>
+      <Provider store={store}>
         <App />
-      </React.StrictMode>
-    </Provider>  
+      </Provider>
+    </React.StrictMode>
   </Suspense>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
