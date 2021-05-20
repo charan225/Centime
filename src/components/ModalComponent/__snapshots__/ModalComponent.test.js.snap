@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal component should render Modal content properly 1`] = `
+<Modal
+  animation={false}
+  autoFocus={true}
+  backdrop={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle>
+      Modal_header_Title
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody>
+    <div>
+      <form
+        className="new-flow-form-container"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="required"
+          >
+            Inflow_Text
+          </label>
+          <input
+            className="form-control"
+            name="inflow"
+            onChange={[Function]}
+            type="text"
+          />
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className="required"
+          >
+            Outflow_Text
+          </label>
+          <input
+            className="form-control"
+            name="outflow"
+            onChange={[Function]}
+            type="text"
+          />
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className="required"
+          >
+            Value_Text
+          </label>
+          <input
+            className="form-control"
+            name="value"
+            onChange={[Function]}
+            type="number"
+          />
+        </div>
+      </form>
+    </div>
+  </ModalBody>
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="secondary"
+    >
+      Close_ButtonText
+    </Button>
+    <Button
+      active={false}
+      disabled={true}
+      onClick={[Function]}
+      variant="primary"
+    >
+      Save_Changes
+    </Button>
+  </ModalFooter>
+</Modal>
+`;

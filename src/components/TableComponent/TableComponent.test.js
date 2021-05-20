@@ -1,54 +1,69 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import ReactShallowRenderer from "react-test-renderer/shallow";
 import toJson from "enzyme-to-json";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 
-import { Provider } from "react-redux";
-import store from "../../store/index";
-
-import TableComponent from "./TableComponent.js";
+import { TableComponent } from "./TableComponent.js";
 import { convertToReqFormat } from "./TableComponent.js";
+import {
+  initialRowState,
+  headers,
+  mainData,
+  altMainData,
+} from "../../fixtures/mainData.js";
+
+let store, wrapper, renderComponent;
+let modalActions = {
+  closeModal: jest.fn(),
+  displayModal: jest.fn(),
+};
+let rowsActions = {
+  addRow: jest.fn(),
+  upDateRow: jest.fn(),
+  deleteRow: jest.fn(),
+};
+beforeAll(() => {
+  let showModal = false;
+
+  wrapper = shallow(
+    <TableComponent
+      headers={headers}
+      rowsActions={rowsActions}
+      modalActions={modalActions}
+      isModalOpen={showModal}
+      rowsLength={mainData.length}
+      rowsData={mainData}
+    />
+  );
+  renderComponent = (
+    <TableComponent
+      headers={headers}
+      rowsActions={rowsActions}
+      modalActions={modalActions}
+      isModalOpen={showModal}
+      rowsLength={mainData.length}
+      rowsData={mainData}
+    />
+  );
+});
 
 describe("Table component", () => {
-  test("Test table header", () => {
-    render(
-      <Provider store={store}>
-        <TableComponent />
-      </Provider>
-    );
-    const linkElement = screen.getByText("Table_Header_title", {
-      exact: false,
-    });
-    expect(linkElement).toBeInTheDocument();
-  });
-
   test("Initial render", () => {
-    render(
-      <Provider store={store}>
-        <TableComponent />
-      </Provider>
-    );
+    render(renderComponent);
     const tableElement = screen.getAllByRole("row");
     expect(tableElement).not.toHaveLength(0);
   });
 
-  test("Render headers", async () => {
-    render(
-      <Provider store={store}>
-        <TableComponent />
-      </Provider>
-    );
-    const tableElement = await screen.findAllByRole("columnheader");
+  test("Render headers", () => {
+    render(renderComponent);
+    const tableElement = screen.getAllByRole("columnheader");
     expect(tableElement).not.toHaveLength(0);
   });
 
-  test("Render initial data", async () => {
-    render(
-      <Provider store={store}>
-        <TableComponent />
-      </Provider>
-    );
-    const tableElement = await screen.findAllByRole("cell");
+  test("Render initial data", () => {
+    render(renderComponent);
+    const tableElement = screen.getAllByRole("cell");
     expect(tableElement).not.toHaveLength(0);
   });
 
@@ -63,12 +78,17 @@ describe("Table component", () => {
     });
   });
 
-  // test("should render table component correctly", () => {
-  //   const wrapper = mount(
-  //     <Provider store={store}>
-  //       <TableComponent />
-  //     </Provider>
-  //   );
-  //   expect(wrapper).toMatchSnapshot();
-  // });
+  test("should render table component correctly", () => {
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  test("should render table component correctly with alt data", () => {
+    wrapper.setProps({ rowsData: altMainData });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  test("delete modal when add new button clicked", () => {
+    wrapper.find(".open-modal").simulate("click");
+    expect(modalActions.displayModal).toHaveBeenCalled();
+  });
 });

@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table component should render table component correctly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="table-container"
+  >
+    <div>
+      <h2>
+        Table_Header_Title
+      </h2>
+    </div>
+    <div
+      className="add-new-button"
+    >
+      <button
+        className="btn btn-primary float-left open-modal"
+        onClick={[Function]}
+        type="button"
+      >
+        AddNewRow_ButtonText
+      </button>
+    </div>
+    <WithStyles(ForwardRef(Paper))
+      className="makeStyles-root-1"
+    >
+      <WithStyles(ForwardRef(Table))
+        aria-label="caption table"
+        className="makeStyles-table-2"
+      >
+        <WithStyles(ForwardRef(TableHead))>
+          <WithStyles(ForwardRef(TableRow))>
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            />
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            />
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            >
+              Inflow
+            </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            >
+              Outflow
+            </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            >
+              Value
+            </WithStyles(ForwardRef(TableCell))>
+          </WithStyles(ForwardRef(TableRow))>
+        </WithStyles(ForwardRef(TableHead))>
+        <WithStyles(ForwardRef(TableBody)) />
+      </WithStyles(ForwardRef(Table))>
+    </WithStyles(ForwardRef(Paper))>
+  </div>
+</div>
+`;
+
+exports[`Table component should render table component correctly with alt data 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="table-container"
+  >
+    <div>
+      <h2>
+        Table_Header_Title
+      </h2>
+    </div>
+    <div
+      className="add-new-button"
+    >
+      <button
+        className="btn btn-primary float-left open-modal"
+        onClick={[Function]}
+        type="button"
+      >
+        AddNewRow_ButtonText
+      </button>
+    </div>
+    <WithStyles(ForwardRef(Paper))
+      className="makeStyles-root-1"
+    >
+      <WithStyles(ForwardRef(Table))
+        aria-label="caption table"
+        className="makeStyles-table-2"
+      >
+        <WithStyles(ForwardRef(TableHead))>
+          <WithStyles(ForwardRef(TableRow))>
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            />
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            />
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            >
+              Inflow
+            </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            >
+              Outflow
+            </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="left"
+            >
+              Value
+            </WithStyles(ForwardRef(TableCell))>
+          </WithStyles(ForwardRef(TableRow))>
+        </WithStyles(ForwardRef(TableHead))>
+        <WithStyles(ForwardRef(TableBody)) />
+      </WithStyles(ForwardRef(Table))>
+    </WithStyles(ForwardRef(Paper))>
+  </div>
+</div>
+`;

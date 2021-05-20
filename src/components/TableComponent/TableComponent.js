@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { useTranslation } from "react-i18next";
+import toJson from "enzyme-to-json";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -72,14 +74,10 @@ const CustomTableCell = ({ row, name, onChange }) => {
   );
 };
 
-const TableComponent = () => {
-  const dispatch = useDispatch();
+export const TableComponent = (props) => {
+  //console.log("props table", props);
+  //const dispatch = useDispatch();
   const { t } = useTranslation();
-
-  const rowsData = useSelector((state) => state.rows.rows);
-  const Headers = useSelector((state) => state.rows.headers);
-  const isModalOpen = useSelector((state) => state.modal.showModal);
-  const rowsLength = useSelector((state) => state.rows.length);
 
   const [tableRows, setTableRows] = React.useState([]);
   const [previous, setPrevious] = React.useState({});
@@ -88,11 +86,11 @@ const TableComponent = () => {
 
   useEffect(() => {
     const mapTableRows = [];
-    rowsData.map((item, index) => {
+    props.rowsData.map((item, index) => {
       mapTableRows.push(convertToReqFormat(index, ...Object.values(item)));
     });
     setTableRows(mapTableRows);
-  }, [rowsLength]);
+  }, [props.rowsLength]);
 
   const onToggleEditMode = (id) => {
     setTableRows((state) => {
@@ -118,7 +116,7 @@ const TableComponent = () => {
       }
       return row;
     });
-    dispatch(rowsActions.upDateRow(newRows));
+    props.rowsActions.upDateRow(newRows);
     setTableRows(newRows);
   };
 
@@ -129,7 +127,7 @@ const TableComponent = () => {
       }
       return row;
     });
-    dispatch(rowsActions.upDateRow(newRows));
+    props.rowsActions.upDateRow(newRows);
     setTableRows(newRows);
     setPrevious((state) => {
       delete state[id];
@@ -139,25 +137,25 @@ const TableComponent = () => {
   };
 
   const onDelete = (id) => {
-    dispatch(rowsActions.deleteRow(id));
+    props.rowsActions.deleteRow(id);
     tableRows.splice(id, 1);
     setTableRows(tableRows);
   };
 
   const openModal = () => {
-    dispatch(modalActions.displayModal());
+    props.modalActions.displayModal();
   };
 
   return (
     <div className="container">
       <div className="table-container">
-        <div className="">
+        <div>
           <h2>{t("Table_Header_Title")}</h2>
         </div>
         <div className="add-new-button">
           <button
             type="button"
-            className="btn btn-primary float-left"
+            className="btn btn-primary float-left open-modal"
             onClick={openModal}
           >
             {t("AddNewRow_ButtonText")}
@@ -169,7 +167,7 @@ const TableComponent = () => {
               <TableRow>
                 <TableCell align="left" />
                 <TableCell align="left" />
-                {Headers.map((header) => (
+                {props.headers.map((header) => (
                   <TableCell align="left">{t(header)}</TableCell>
                 ))}
               </TableRow>
@@ -182,12 +180,16 @@ const TableComponent = () => {
                       <>
                         <IconButton
                           aria-label="done"
+                          name="done"
+                          role="button"
+                          className="done-button"
                           onClick={() => onToggleEditMode(row.id)}
                         >
                           <DoneIcon />
                         </IconButton>
                         <IconButton
                           aria-label="revert"
+                          className="revert-button"
                           onClick={() => onRevert(row.id)}
                         >
                           <RevertIcon />
@@ -218,10 +220,34 @@ const TableComponent = () => {
             </TableBody>
           </Table>
         </Paper>
-        {isModalOpen && <ModalComponent />}
+        {props.isModalOpen && <ModalComponent />}
       </div>
     </div>
   );
 };
 
-export default TableComponent;
+// const mapDispatchToProps = (dispatch) => {
+//   return { actions: bindActionCreators(actionCreators, dispatch) };
+// };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    rowsActions: bindActionCreators(rowsActions, dispatch),
+    modalActions: bindActionCreators(modalActions, dispatch),
+  };
+};
+
+const mapStateToProps = (state) => {
+  // const rowsData = useSelector((state) => state.rows.rows);
+  // const Headers = useSelector((state) => state.rows.headers);
+  // const isModalOpen = useSelector((state) => state.modal.showModal);
+  // const rowsLength = useSelector((state) => state.rows.length);
+  return {
+    rowsData: state.rows.rows,
+    headers: state.rows.headers,
+    isModalOpen: state.modal.showModal,
+    rowsLength: state.rows.length,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableComponent);
