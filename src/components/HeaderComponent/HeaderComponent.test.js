@@ -1,4 +1,3 @@
-import { render, screen } from "@testing-library/react";
 import HeaderComponent from "./HeaderComponent";
 import toJson from "enzyme-to-json";
 import { shallow } from "enzyme";
