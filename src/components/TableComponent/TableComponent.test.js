@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ReactShallowRenderer from "react-test-renderer/shallow";
 import toJson from "enzyme-to-json";
 import { shallow } from "enzyme";
 

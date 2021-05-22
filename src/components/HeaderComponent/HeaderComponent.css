@@ -1,19 +1,18 @@
-.header-container{
-    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
-    margin: 0!important;
-    display: flex;
-    align-items: center;
-    background-color: #1da4a8;
-    padding: 8px 24px 24px 16px;
-    padding-bottom: 16px;    
-    width: 100%;
+.header-container {
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  background-color: #1da4a8;
+  padding: 8px 24px 24px 16px;
+  padding-bottom: 16px;
+  width: 100%;
 }
 
-.header-content{
-    width: 100%;
+.header-content {
+  width: 100%;
 }
 
-.header-dropdown-container{
-    width: 85%;
+.header-dropdown-container {
+  width: 85%;
 }
-

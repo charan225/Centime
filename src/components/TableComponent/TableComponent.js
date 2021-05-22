@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useTranslation } from "react-i18next";
-import toJson from "enzyme-to-json";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -75,8 +74,6 @@ const CustomTableCell = ({ row, name, onChange }) => {
 };
 
 export const TableComponent = (props) => {
-  //console.log("props table", props);
-  //const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const [tableRows, setTableRows] = React.useState([]);
@@ -86,7 +83,7 @@ export const TableComponent = (props) => {
 
   useEffect(() => {
     const mapTableRows = [];
-    props.rowsData.map((item, index) => {
+    props.rowsData?.map((item, index) => {
       mapTableRows.push(convertToReqFormat(index, ...Object.values(item)));
     });
     setTableRows(mapTableRows);
@@ -94,7 +91,7 @@ export const TableComponent = (props) => {
 
   const onToggleEditMode = (id) => {
     setTableRows((state) => {
-      return tableRows.map((row) => {
+      return tableRows?.map((row) => {
         if (row.id === id) {
           return { ...row, isEditMode: !row.isEditMode };
         }
@@ -110,7 +107,7 @@ export const TableComponent = (props) => {
     const value = e.target.value;
     const name = e.target.name;
     const { id } = row;
-    const newRows = tableRows.map((row) => {
+    const newRows = tableRows?.map((row) => {
       if (row.id === id) {
         return { ...row, [name]: value };
       }
@@ -121,7 +118,7 @@ export const TableComponent = (props) => {
   };
 
   const onRevert = (id) => {
-    const newRows = tableRows.map((row) => {
+    const newRows = tableRows?.map((row) => {
       if (row.id === id) {
         return previous[id] ? previous[id] : row;
       }
@@ -167,13 +164,13 @@ export const TableComponent = (props) => {
               <TableRow>
                 <TableCell align="left" />
                 <TableCell align="left" />
-                {props.headers.map((header) => (
+                {props.headers?.map((header) => (
                   <TableCell align="left">{t(header)}</TableCell>
                 ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {tableRows.map((row) => (
+              {tableRows?.map((row) => (
                 <TableRow key={row.id}>
                   <TableCell className={classes.selectTableCell}>
                     {row.isEditMode ? (
@@ -226,10 +223,6 @@ export const TableComponent = (props) => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return { actions: bindActionCreators(actionCreators, dispatch) };
-// };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     rowsActions: bindActionCreators(rowsActions, dispatch),
@@ -238,10 +231,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  // const rowsData = useSelector((state) => state.rows.rows);
-  // const Headers = useSelector((state) => state.rows.headers);
-  // const isModalOpen = useSelector((state) => state.modal.showModal);
-  // const rowsLength = useSelector((state) => state.rows.length);
   return {
     rowsData: state.rows.rows,
     headers: state.rows.headers,

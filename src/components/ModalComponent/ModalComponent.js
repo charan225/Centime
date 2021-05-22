@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useTranslation } from "react-i18next";
@@ -10,8 +10,7 @@ import { modalActions } from "../../store/index";
 import "./ModalComponent.css";
 
 export const ModalComponent = (props) => {
-  console.log("modal props", props);
-  const [row, setRow] = React.useState({});
+  const [row, setRow] = useState({});
   const { t } = useTranslation();
 
   const submitForm = () => {
@@ -46,8 +45,11 @@ export const ModalComponent = (props) => {
         <div>
           <form className="new-flow-form-container">
             <div className="form-group">
-              <label className="required">{t("Inflow_Text")}</label>
+              <label className="required" htmlFor="inflow-input">
+                {t("Inflow_Text")}
+              </label>
               <input
+                id="inflow-input"
                 type="text"
                 className="form-control"
                 name="inflow"
@@ -55,8 +57,11 @@ export const ModalComponent = (props) => {
               />
             </div>
             <div className="form-group">
-              <label className="required">{t("Outflow_Text")}</label>
+              <label className="required" htmlFor="outflow-input">
+                {t("Outflow_Text")}
+              </label>
               <input
+                id="outflow-input"
                 type="text"
                 className="form-control"
                 name="outflow"
@@ -64,12 +69,15 @@ export const ModalComponent = (props) => {
               />
             </div>
             <div className="form-group">
-              <label className="required">{t("Value_Text")}</label>
+              <label className="required" htmlFor="value-input">
+                {t("Value_Text")}
+              </label>
               <input
                 type="number"
                 className="form-control"
                 name="value"
                 onChange={onChange}
+                id="value-input"
               />
             </div>
           </form>

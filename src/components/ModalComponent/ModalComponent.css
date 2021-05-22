@@ -1,18 +1,18 @@
-.display-block{
-    display: block !important;
+.display-block {
+  display: block !important;
 }
 
 .modal-backdrop {
-    background-color: #fff!important;
-    opacity: .6!important;
-    z-index: auto;
+  background-color: #fff !important;
+  opacity: 0.6 !important;
+  z-index: auto;
 }
 
 .form-group .required:after {
-    content:"*";
-    color:red;
-  }
+  content: "*";
+  color: red;
+}
 
-.new-flow-form-container label{
- float: left;
+.new-flow-form-container label {
+  float: left;
 }
