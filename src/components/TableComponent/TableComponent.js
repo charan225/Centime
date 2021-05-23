@@ -54,6 +54,12 @@ export const convertToReqFormat = (index, inflow, outflow, value) => ({
   isEditMode: false,
 });
 
+export const convertToStoreRowFormat = (index, inflow, outflow, value) => ({
+  inflow,
+  outflow,
+  value,
+});
+
 const CustomTableCell = ({ row, name, onChange }) => {
   const classes = useStyles();
   const { isEditMode } = row;
@@ -65,6 +71,10 @@ const CustomTableCell = ({ row, name, onChange }) => {
           name={name}
           onChange={(e) => onChange(e, row)}
           className={classes.input}
+          inputProps={{
+            "data-testid": name,
+            type: name === "value" ? "number" : "text",
+          }}
         />
       ) : (
         row[name]
@@ -113,7 +123,11 @@ export const TableComponent = (props) => {
       }
       return row;
     });
-    props.rowsActions.upDateRow(newRows);
+    let mainRows = [];
+    newRows.map((item, index) => {
+      mainRows.push(convertToStoreRowFormat(...Object.values(item)));
+    });
+    props.rowsActions.upDateRow(mainRows);
     setTableRows(newRows);
   };
 
@@ -124,7 +138,11 @@ export const TableComponent = (props) => {
       }
       return row;
     });
-    props.rowsActions.upDateRow(newRows);
+    let mainRows = [];
+    newRows.map((item, index) => {
+      mainRows.push(convertToStoreRowFormat(...Object.values(item)));
+    });
+    props.rowsActions.upDateRow(mainRows);
     setTableRows(newRows);
     setPrevious((state) => {
       delete state[id];
@@ -179,7 +197,10 @@ export const TableComponent = (props) => {
                           aria-label="done"
                           name="done"
                           role="button"
-                          className="done-button"
+                          data-testid="doneIcon"
+                          disabled={
+                            !row["inflow"] || !row["outflow"] || !row["value"]
+                          }
                           onClick={() => onToggleEditMode(row.id)}
                         >
                           <DoneIcon />
@@ -187,6 +208,7 @@ export const TableComponent = (props) => {
                         <IconButton
                           aria-label="revert"
                           className="revert-button"
+                          data-testid="revertIcon"
                           onClick={() => onRevert(row.id)}
                         >
                           <RevertIcon />
@@ -196,6 +218,7 @@ export const TableComponent = (props) => {
                       <IconButton
                         aria-label="edit"
                         onClick={() => onToggleEditMode(row.id)}
+                        data-testid="editInput"
                       >
                         <EditIcon />
                       </IconButton>
@@ -205,6 +228,7 @@ export const TableComponent = (props) => {
                     <IconButton
                       aria-label="delete"
                       onClick={() => onDelete(row.id)}
+                      data-testid="deleteIcon"
                     >
                       <DeleteOutlineIcon />
                     </IconButton>
