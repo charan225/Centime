@@ -142,8 +142,8 @@ export const TableComponent = (props) => {
     newRows.map((item, index) => {
       mainRows.push(convertToStoreRowFormat(...Object.values(item)));
     });
-    props.rowsActions.upDateRow(mainRows);
     setTableRows(newRows);
+    props.rowsActions.upDateRow(mainRows);
     setPrevious((state) => {
       delete state[id];
       return state;
