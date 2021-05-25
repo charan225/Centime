@@ -101,7 +101,7 @@ export const TableComponent = (props) => {
 
   const onToggleEditMode = (id) => {
     setTableRows((state) => {
-      return tableRows?.map((row) => {
+      return state?.map((row) => {
         if (row.id === id) {
           return { ...row, isEditMode: !row.isEditMode };
         }
@@ -142,8 +142,9 @@ export const TableComponent = (props) => {
     newRows.map((item, index) => {
       mainRows.push(convertToStoreRowFormat(...Object.values(item)));
     });
-    setTableRows(newRows);
+
     props.rowsActions.upDateRow(mainRows);
+    setTableRows(newRows);
     setPrevious((state) => {
       delete state[id];
       return state;
